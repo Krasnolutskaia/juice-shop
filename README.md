@@ -1,4 +1,4 @@
-# juice-shope
+# juice-shope <br>
 /api/products - работа со всеми товарами
 /api/products/<int:product_id> - работа с одним товаром
 /api/users - работа со всеми пользователями
