@@ -1,10 +1,10 @@
 flask
 flask_login
 flask_restful
-blueprints
+blueprint
 sqlalchemy
 alembic
 sqlalchemy_serializer
-werkzeug.security
+werkzeug
 flask_wtf
 wtforms
