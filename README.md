@@ -1,1 +1,1 @@
-# juice-shope
+# juice-shop
