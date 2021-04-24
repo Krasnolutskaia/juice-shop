@@ -8,7 +8,7 @@
     <form method="POST" action="{{ url_for('products.create') }}">
       {{ form.hidden_tag() }}
     <p>
-        {{ form.name.label }}<br>
+        {{ form.name.label }} *<br>
         {{ form.name(class="form-control") }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@
         {% endfor %}
     </p>
     <p>
-        {{ form.price.label }}<br>
+        {{ form.price.label *}}<br>
         {{ form.price(class="form-control") }}<br>
         {% for error in form.price.errors %}
             <p class="alert alert-danger" role="alert">
