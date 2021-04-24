@@ -5,6 +5,6 @@ blueprint
 sqlalchemy
 alembic
 sqlalchemy_serializer
-werkzeug.security
+werkzeug
 flask_wtf
 wtforms
