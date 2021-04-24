@@ -1,0 +1,10 @@
+flask
+flask_login
+flask_restful
+blueprints
+sqlalchemy
+alembic
+sqlalchemy_serializer
+werkzeug.security
+flask_wtf
+wtforms

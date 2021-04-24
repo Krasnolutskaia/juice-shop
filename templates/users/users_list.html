@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} All Users {% endblock %}
+
+{% block content %}
+  <div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone number</th>
+              <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <th scope="row">
+                    {{ user.name }}
+              </th>
+              <th scope="row">{{ user.email }}</th>
+                <th scope="row">{{ user.address }}</th>
+                <th scope="row">{{ user.phone_number }}</th>
+
+                    <th scope="row"><a href="{{ url_for('users.delete_user', user_id=user.id) }}">
+                        {% if user.id != 1 %}
+                        <button type="submit" class="btn btn-primary">Delete</button></a>
+                        {% if user.is_admin %}
+                            <a href="{{ url_for('users.show_users', user_id=user.id) }}">
+                            <button type="submit" class="btn btn-primary">Downgrade</button></a>
+                        {% else %}
+                            <a href="{{ url_for('users.edit_user', user_id=user.id) }}">
+                            <button type="submit" class="btn btn-primary">Make admin</button></a>
+                        {% endif %}
+                        {% endif %}
+                    </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock %}

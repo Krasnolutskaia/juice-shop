@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Juice Shop</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a href=" {{ url_for('products.index') }} " class="navbar-brand">Juice Shop</a>
+            {% if current_user.is_authenticated %}
+            <p>
+                <a class="navbar-brand" href="/profile" ><u>{{ current_user.name }}</u></a>
+            {% if current_user.is_admin %}
+                <a class="navbar-brand" href="/products_list">All products</a>
+                <a class="navbar-brand" href="/users_list">All users</a>
+            {% endif %}
+                <a class="btn btn-primary" href="{{ url_for('basket.view_basket') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg></a>
+                <a href="{{ url_for('users.logout') }}" class="btn btn-secondary">Log out</a>
+            </p>
+            {% else %}
+                <p>
+                    <a class="btn btn-primary " href="/register">Sign Up</a>
+                    <a class="btn btn-success" href="/login">Log in</a>
+                </p>
+            {% endif %}
+        </nav>
+        <div class="container mt-3">
+            {% block content %}{% endblock %}
+        </div>
+    <br>
+    <br>
+    </body>
+</html>

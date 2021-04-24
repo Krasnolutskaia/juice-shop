@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+<h1>Profile information</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(class="form-control", type="email") }}<br>
+        {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.phone_number.label }}<br>
+        {{ form.phone_number(class="form-control") }}<br>
+        {% for error in form.phone_number.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.address.label }}<br>
+        {{ form.address(class="form-control") }}<br>
+        {% for error in form.address.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+        {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.new_password.label }}<br>
+        {{ form.new_password(class="form-control", type="password") }}<br>
+        {% for error in form.new_password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.new_password_again.label }}<br>
+        {{ form.new_password_again(class="form-control", type="password") }}<br>
+        {% for error in form.new_password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}
+    <a href="{{ url_for('users.logout') }}" class="btn btn-primary">Log out</a>
+        {% if current_user.id != 1 %}
+    <a href="{{ url_for('users.delete_user', user_id=current_user.id) }}" class="btn btn-danger">Delete account</a>
+    {% endif %}
+    </p>
+    {{message}}
+    <br>
+</form>
+{% endblock %}

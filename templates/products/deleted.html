@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Product was deleted {% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1> Product {{ product_name }} was deleted</h1>
+    <hr />
+    <a class="btn btn-primary" href="{{ url_for('products.index') }}">
+      View all products
+    </a>
+  </div>
+{% endblock %}
