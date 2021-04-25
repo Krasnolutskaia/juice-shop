@@ -39,7 +39,7 @@ def main():
     app.register_blueprint(products)
     app.register_blueprint(users)
     app.register_blueprint(basket)
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
 
 
 if __name__ == '__main__':

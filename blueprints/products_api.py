@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, render_template, redirect, url_for
+from flask import Blueprint, abort, render_template, redirect, url_for, request
 from flask_login import current_user
 
 from data import db_session
@@ -11,7 +11,28 @@ products = Blueprint('products', __name__)
 @products.route('/')
 def index():
     db_sess = db_session.create_session()
-    all_products = db_sess.query(Product).all()
+    q = request.args.get('q', '')
+    if q:
+        all_products = db_sess.query(Product).filter(
+            (Product.name.like(f'%{q.lower()}%')) | (Product.name.like(f'%{q.upper()}%')) | (
+                Product.name.like(f'%{q.capitalize()}%'))).all()
+        if len(all_products) == 0:
+            all_products = db_sess.query(Product).filter(
+                (Product.description.like(f'%{q.lower()}%')) | (Product.description.like(f'%{q.upper()}%')) | (
+                    Product.description.like(f'%{q.capitalize()}%'))).all()
+            if len(all_products) == 0:
+                all_products = 'Nothing was found'
+        else:
+            res = db_sess.query(Product).filter(
+                (Product.description.like(f'%{q.lower()}%')) | (Product.description.like(f'%{q.upper()}%')) | (
+                    Product.description.like(f'%{q.capitalize()}%'))).all()
+            for prod in res:
+                if prod in all_products:
+                    res.remove(prod)
+            if len(res) != 0:
+                all_products += res
+    else:
+        all_products = db_sess.query(Product).all()
     return render_template('products/show.html', products=all_products)
 
 
