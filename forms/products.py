@@ -8,5 +8,5 @@ class ProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     description = StringField('Description')
     price = DecimalField('Price', validators=[DataRequired()])
-    picture_url = StringField('Picture URL', validators=[URL()])
+    picture_url = StringField('Picture URL')
     submit = SubmitField('Create')

@@ -33,6 +33,12 @@ def index():
                 all_products += res
     else:
         all_products = db_sess.query(Product).all()
+    sort_by = request.args.get('sort_by', '')
+    if sort_by:
+        if sort_by == 'Rank by highest price':
+            all_products = sorted(all_products, key=lambda x: -x.price_cents)
+        elif sort_by == 'Rank by lowest price':
+            all_products = sorted(all_products, key=lambda x: x.price_cents)
     return render_template('products/show.html', products=all_products)
 
 
