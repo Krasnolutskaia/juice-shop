@@ -61,10 +61,10 @@ def create():
     if current_user.is_admin:
         form = ProductForm()
         if form.validate_on_submit():
-            product = Product() 
+            product = Product()
             product.name = form.name.data
             product.description = form.description.data
-            product.price_cents = int(form.price.data * 100) 
+            product.price_cents = int(form.price.data * 100)
             product.picture_url = form.picture_url.data
             db_sess = db_session.create_session()
             db_sess.add(product)
